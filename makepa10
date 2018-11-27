@@ -1,0 +1,221 @@
+#-----------make file when using QNX----------------------#
+CC = qcc
+OBJ = ./Arcnet/arc_pci.o main.o simulation.o operation.o cp.o file.o finish_wo_write.o finish.o init.o initialize_all.o initialize_data.o ctrlTask.o get_current_status.o path_init.o path_generate.o pid_control.o joint_mode.o allbrakeoff_mode.o brakeoff_mode.o end_task.o Nop.o control.o start.o joint_move.o move.o ten.o five.o allzero.o all_off_brake.o allboff.o on_brake.o allbon.o off_brake.o boff1.o boff2.o boff3.o boff4.o boff5.o boff6.o boff7.o timer.o input_A01.o input_A12.o input_A23.o input_A34.o input_A45.o input_A56.o mul.o transfer.o direct_kin.o inv_mat.o angle.o inverse_kin.o display.o set_torque.o set_radius.o set_cir_coefficient.o set_cir_angle.o circle.o circular.o set_coefficients.o set_angle.o set_location.o straight.o line.o stop.o
+
+CFLAGS = -02 -w8
+
+LIBS = -lm
+#---------------------------------------------------------#
+
+all			:	pa10
+
+clean			:
+				/bin/rm -f *.o *
+
+.c.o.h			:
+				$(CC) $(CFLAGS) -c $(LIBS) $<
+
+
+./Arcnet/arc_pci.o	:	./Arcnet/arc_pci.c ./Arcnet/arc_pci.h ./Arcnet/arc_pci_cfg.h include.h main_cfg.h enum.h structure.h
+				$(CC) -c Arcnet/arc_pci.c
+ 
+
+timer.o			:	timer.c include.h main.h timer.h
+				$(CC) -c timer.c
+
+file.o			:	file.c include.h structure.h
+				$(CC) -c file.c
+
+finish_wo_write.o	:	finish_wo_write.c 
+				$(CC) -c finish_wo_write.c
+
+finish.o		:	finish.c include.h ./Arcnet/arc_pci.h structure.h enum.h
+				$(CC) -c finish.c
+
+init.o			:	init.c include.h timer.h
+				$(CC) -c init.c
+
+initialize_all.o	:	initialize_all.c include.h ./Arcnet/arc_pci.h structure.h
+
+				$(CC) -c initialize_all.c
+
+initialize_data.o	:	initialize_data.c include.h structure.h enum.h
+				$(CC) -c initialize_data.c
+
+ctrlTask.o		:	ctrlTask.c include.h timer.h structure.h
+				$(CC) -c ctrlTask.c
+
+get_current_status.o	:	get_current_status.c include.h structure.h main.h ./Arcnet/arc_pci.h enum.h
+				$(CC) -c get_current_status.c
+
+path_init.o		:	path_init.c include.h structure.h
+				$(CC) -c path_init.c
+
+path_generate.o		:	path_generate.c include.h main.h structure.h
+				$(CC) -c path_generate.c
+
+pid_control.o		:	pid_control.c include.h main.h ./Arcnet/arc_pci.h structure.h enum.h
+				$(CC) -c pid_control.c
+
+joint_mode.o		:	joint_mode.c include.h structure.h
+				$(CC) -c joint_mode.c
+
+allbrakeoff_mode.o	:	allbrakeoff_mode.c include.h ./Arcnet/arc_pci.h
+				$(CC) -c allbrakeoff_mode.c
+
+brakeoff_mode.o		:	brakeoff_mode.c include.h ./Arcnet/arc_pci.h
+				$(CC) -c brakeoff_mode.c
+
+end_task.o		:	end_task.c include.h structure.h
+				$(CC) -c end_task.c
+
+Nop.o			:	Nop.c include.h ./Arcnet/arc_pci.h
+				$(CC) -c Nop.c
+
+control.o		:	control.c include.h ./Arcnet/arc_pci.h structure.h enum.h 
+				$(CC) -c control.c
+
+start.o			:	start.c include.h timer.h structure.h ./Arcnet/arc_pci.h
+				$(CC) -c start.c
+
+joint_move.o		:	joint_move.c include.h structure.h enum.h
+				$(CC) -c joint_move.c
+
+all_off_brake.o		:	all_off_brake.c include.h structure.h enum.h
+				$(CC) -c all_off_brake.c
+
+allzero.o		:	allzero.c include.h structure.h
+				$(CC) -c allzero.c
+
+five.o			:	five.c include.h structure.h
+				$(CC) -c five.c
+
+move.o			:	move.c structure.h include.h
+				$(CC) -c move.c
+
+set_location.o		:	set_location.c include.h structure.h enum.h
+				$(CC) -c set_location.c
+
+straight.o		:	straight.c include.h structure.h
+				$(CC) -c straight.c
+
+stop.o			:	stop.c
+				$(CC) -c stop.c
+
+line.o			:	line.c structure.h enum.h ./Arcnet/arc_pci.h
+				$(CC) -c line.c
+
+ten.o			:	ten.c structure.h include.h
+				$(CC) -c ten.c
+
+allboff.o		:	allboff.c 
+				$(CC) -c allboff.c
+
+on_brake.o		:	on_brake.c include.h structure.h
+				$(CC) -c on_brake.c
+
+allbon.o		:	allbon.c include.h
+				$(CC) -c allbon.c
+
+off_brake.o		:	off_brake.c include.h structure.h enum.h
+				$(CC) -c off_brake.c
+
+boff1.o			:	boff1.c include.h
+				$(CC) -c boff1.c
+
+boff2.o			:	boff2.c include.h
+				$(CC) -c boff2.c
+
+boff3.o			:	boff3.c include.h
+				$(CC) -c boff3.c
+
+boff4.o			:	boff4.c include.h
+				$(CC) -c boff4.c
+
+boff5.o			:	boff5.c include.h
+				$(CC) -c boff5.c
+
+boff6.o			:	boff6.c include.h
+				$(CC) -c boff6.c
+
+boff7.o			:	boff7.c include.h
+				$(CC) -c boff7.c
+
+main.o			:	main.c include.h
+				$(CC) -c main.c
+
+operation.o		:	operation.c include.h structure.h enum.h
+				$(CC) -c operation.c
+
+input_A01.o		:	input_A01.c
+				$(CC) -c input_A01.c
+
+input_A12.o		:	input_A12.c
+				$(CC) -c input_A12.c
+
+input_A23.o		:	input_A23.c
+				$(CC) -c input_A23.c
+
+input_A34.o		:	input_A34.c
+				$(CC) -c input_A34.c
+
+input_A45.o		:	input_A45.c
+				$(CC) -c input_A45.c
+
+input_A56.o		:	input_A56.c
+				$(CC) -c input_A56.c
+
+mul.o			:	mul.c
+				$(CC) -c mul.c
+
+transfer.o		:	transfer.c
+				$(CC) -c transfer.c
+
+direct_kin.o		:	direct_kin.c
+				$(CC) -c direct_kin.c
+
+inv_mat.o		:	inv_mat.c
+				$(CC) -c inv_mat.c
+
+angle.o			:	angle.c structure.h
+				$(CC) -c angle.c
+
+inverse_kin.o		:	inverse_kin.c structure.h
+				$(CC) -c inverse_kin.c
+
+set_coefficients.o	:	set_coefficients.c structure.h
+				$(CC) -c set_coefficients.c
+
+set_angle.o		:	set_angle.c main.h structure.h
+				$(CC) -c set_angle.c
+
+set_torque.o		:	set_torque.c main.h structure.h enum.h ./Arcnet/arc_pci.h
+				$(CC) -c set_torque.c
+
+display.o		:	display.c
+				$(CC) -c display.c
+
+
+simulation.o		:	simulation.c include.h structure.h enum.h
+				$(CC) -c simulation.c
+
+cp.o			:	cp.c include.h structure.h enum.h
+				$(CC) -c cp.c
+
+circular.o		:	circular.c include.h structure.h
+				$(CC) -c circular.c
+
+circle.o		:	circle.c
+				$(CC) -c circle.c
+
+set_radius.o		:	set_radius.c include.h structure.h enum.h
+				$(CC) -c set_radius.c
+
+set_cir_coefficient.o	:	set_cir_coefficient.c structure.h
+				$(CC) -c set_cir_coefficient.c
+
+set_cir_angle.o		:	set_cir_angle.c main.h structure.h
+				$(CC) -c set_cir_angle.c
+
+pa10			:	$(OBJ)
+				$(CC) -o pa10 $(OBJ) $(LIBS)
